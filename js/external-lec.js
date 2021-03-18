@@ -27,3 +27,5 @@ console.log(whatIsThisThen);
 // var valueOfThis = alert("You're looking at a website!");
 
 // console.log(valueOfThis);
+
+//Comleted the js with html lecture
