@@ -1,3 +1,5 @@
+"use strict";
+
 var websiteAlert = alert("Welcome to my Website!");
 
 console.log(websiteAlert);
