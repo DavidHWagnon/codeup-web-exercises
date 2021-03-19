@@ -97,10 +97,10 @@ function calculateTip(tipPercentage, totalBill){
  * then display the dollar amount they should tip
  */
 var total = parseFloat(prompt("What was the billed total?"));
-
-var percent = parseFloat(prompt("What percentage of the total bill would you like to tip?"));
-
-alert("You should leave a tip of $" + calculateTip(total,percent));
+alert("The billed total was $" + total) + ".";
+var percent = (parseFloat(prompt("What percentage of the total bill would you like to tip?")));
+alert("You would like to tip " + percent + "% of the bill.");
+alert("You should leave a tip of $" + calculateTip(total,(percent/100)) + ".");
 /**
  * TODO:
  * Create a function named `applyDiscount`. This function should accept a price
@@ -115,3 +115,16 @@ alert("You should leave a tip of $" + calculateTip(total,percent));
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+var originalPricePrompt = parseFloat(prompt("What is the original price of the item?"));
+alert("$" + originalPricePrompt + " is the original price of the item.");
+
+var discountPercent = parseFloat((prompt("What is the percentage of the discount? ** A number between 0 and 1 **")));
+alert("This discount gives a " + (discountPercent*100) + "% discount off the full price of the item." );
+
+function applyDiscount(fullPrice, discountPercentage){
+    var discountPrice =alert("The discount price is $" +( fullPrice - (fullPrice*discountPercentage)));
+    return discountPrice;
+}
+
+applyDiscount(originalPricePrompt, discountPercent);
+
