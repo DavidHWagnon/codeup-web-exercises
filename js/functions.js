@@ -9,6 +9,7 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 // function that takes a name out outputs "Hello, " + name
+
 function sayHello(name){
     return "Hello, " + name;
 }
@@ -37,10 +38,10 @@ console.log(helloMessage);
  * console.
  */
 
-// var that holds my name
+// var that holds my name as a string
 var myName = "David";
 
-// Calling 'sayHello' function with 'myName' as parameter
+// Passing variable to 'sayHello' function
 sayHello(myName);
 console.log(sayHello(myName));
 
