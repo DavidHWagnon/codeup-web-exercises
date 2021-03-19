@@ -1,21 +1,23 @@
 "use strict";
 
-var websiteAlert = alert("Welcome to my Website!");
+// Part 1
+console.log("Hello from external Javascript");
 
-console.log(websiteAlert);
+alert("Welcome to my Website!");
 
-var favoriteColor = prompt("What is your favorite color?")
+//Part 2
+var favoriteColor = prompt("What is your favorite color?");
 
-var myFavoriteColor = "red"
+var myFavoriteColor = "red";
 
 if ((favoriteColor.toLowerCase()) == (myFavoriteColor.toLowerCase()))
 {
-    console.log("WoW! " + favoriteColor +" is my favorite color too!");
+    alert("WoW! " + favoriteColor +" is my favorite color too!");
 }
 else{
-    console.log("That's nice");
+    alert("That's nice");
 }
-
+//Part 3
 var movieRate = parseFloat(prompt("Your kids want to rent the following movies. How much are you going to pay per night per movie?"));
 console.log(movieRate);
 
@@ -29,13 +31,13 @@ console.log(brotherBear);
 var hercules = parseFloat(prompt("For how many days are you going to rent Hercules?"));
 console.log(hercules);
 
-var total = alert("Your total price is going to be " + (movieRate * (littleMermaid + brotherBear + hercules)) + ". Would that be cash or life-juice?");
-console.log(total);
+alert("Your total price is going to be " + (movieRate * (littleMermaid + brotherBear + hercules)) + ". Would that be cash or life-juice?");
 
 
-var contractorAlert = alert("You are a contractor working for Google, Amazon and Facebook." +
+
+alert("You are a contractor working for Google, Amazon and Facebook." +
     " Tell me your pay rate and how many hours you worked for each company last week");
-console.log(contractorAlert);
+
 
 var googlePay = parseFloat(prompt("How much does Google pay you per hour?"));
 console.log(googlePay);
@@ -55,13 +57,13 @@ var facebookHours = parseFloat(prompt("How many hours did you work at Facebook l
 console.log(facebookHours);
 var facebookTotal = facebookPay* facebookHours
 
-var contractorWeeklyPay = alert("Based on your total hours worked last week, you will receive $"
+alert("Based on your total hours worked last week, you will receive $"
     + ((googleTotal)+(amazonTotal)+(facebookTotal)) + " on your next paycheck");
-console.log(contractorWeeklyPay);
 
 
-var studentAlert = alert("You are a student that can only enroll in a certain class if the class is not full and it does not conflict with your current schedule.");
-console.log(studentAlert);
+
+alert("You are a student that can only enroll in a certain class if the class is not full and it does not conflict with your current schedule.");
+
 
 var classFull = confirm("Is the class you want to sign up for currently full?");
 console.log(classFull);
@@ -71,13 +73,17 @@ console.log(conflict);
 
 if ((!classFull && !conflict) === true)
 {
-    console.log("You are able to sign up for the class!");
+    alert("You are able to sign up for the class!")
+
 }
-else { console.log (" You are not able to sign up for the class...");}
+else {
+    alert("You are not able to sign up for the class...");
+
+}
 
 
-var offer = alert("You are able to redeem this offer only if you buy more than two items, or you are a premium member AND the offer has not expired.");
-console.log(offer);
+alert("You are able to redeem this offer only if you buy more than two items, or you are a premium member AND the offer has not expired.");
+
 
 var offerExpired = confirm("Has the offer expired?");
 console.log(offerExpired);
@@ -90,10 +96,12 @@ console.log(premium);
 
 if(offerExpired === true || (premium === false && items === false))
 {
-    console.log("Unfortunately the offer has expired and is no longer available...")
+    alert("Unfortunately the offer has expired and is no longer available...");
+
 }
 else if(offerExpired == false && (items === true || premium === true))
 {
-    console.log("Congratulations you are eligible for this offer")
+    alert("Congratulations you are eligible for this offer!!!");
+
 }
 
