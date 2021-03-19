@@ -17,7 +17,7 @@ if ((favoriteColor.toLowerCase()) == (myFavoriteColor.toLowerCase()))
 else{
     alert("That's nice");
 }
-//Part 3
+//Part 3.1
 var movieRate = parseFloat(prompt("Your kids want to rent the following movies. How much are you going to pay per night per movie?"));
 console.log(movieRate);
 
@@ -34,7 +34,7 @@ console.log(hercules);
 alert("Your total price is going to be " + (movieRate * (littleMermaid + brotherBear + hercules)) + ". Would that be cash or life-juice?");
 
 
-
+//Part 3.2
 alert("You are a contractor working for Google, Amazon and Facebook." +
     " Tell me your pay rate and how many hours you worked for each company last week");
 
@@ -61,7 +61,7 @@ alert("Based on your total hours worked last week, you will receive $"
     + ((googleTotal)+(amazonTotal)+(facebookTotal)) + " on your next paycheck");
 
 
-
+//Part 3.3
 alert("You are a student that can only enroll in a certain class if the class is not full and it does not conflict with your current schedule.");
 
 
@@ -81,7 +81,7 @@ else {
 
 }
 
-
+//Part 3.4
 alert("You are able to redeem this offer only if you buy more than two items, or you are a premium member AND the offer has not expired.");
 
 
