@@ -15,20 +15,21 @@ var allCones = Math.floor(Math.random() * 50) + 50;
 
 console.log("We have " + allCones + " cones to sell today");
 
-var conesSold = 0;
-
 do{
+    // number of cones being sold in this loop iteration
     var numberOfCones = Math.floor(Math.random() * 5) + 1;
+    //checks to see if number of cones available is 0 and stops loop if so
     if(allCones===0){
-        console.log("We've sold all our cones for the day!");
+        console.log("We've sold all  of our cones for the day!");
         break;
     }
+    //checks to see if number of cones being sold is more than the number of cones available
     else if(numberOfCones>allCones){
         console.log("I'm so sorry, we only have " + allCones + " left, so I can't sell you " + numberOfCones + " cones...");
     }
+    //prints out number of cones sold and subtracts it from number of cones available
     else{
-        console.log(numberOfCones + " cones sold!")
-        conesSold += numberOfCones;
+        console.log(numberOfCones + " cones sold!");
         allCones -= numberOfCones;
     }
 
