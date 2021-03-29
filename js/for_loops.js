@@ -23,15 +23,31 @@ function randomLoop(){
     }
 }
 
-console.log(randomLoop())
+console.log(randomLoop());
 
 
 for(var i = 1; i<10;i++){
     for(var x = 0; x<i;x++){
         console.log(i);
     }
+    console.log("<br>")
     x=0;
 }
+
+//Javier's solution
+// for (var i = 1; i < 10; i++) {
+//     var number = i;
+// console.log(stringNumber);
+//     var count = 0;
+//     var outputString = "";
+//     while(count < number) {
+//         outputString = outputString + number.toString();
+//         // console.log("Time " + count + " through the loop " + stringNumber);
+//         count = count + 1;
+//     }
+//     console.log(outputString);
+// }
+
 
 for(var a = 100;a > 0;){
     console.log(a)
