@@ -4,7 +4,7 @@
 
 for(var x = 0; x<=1; x++){
     var odd = prompt("Give me an odd number between 1 and 50!");
-    if(odd%2 === 0){
+    if(parseFloat(odd)%2 === 0 || isNaN(odd)){
         x=0;
     }
     else if(odd%2 !== 0){
