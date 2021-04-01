@@ -24,10 +24,10 @@
      * Example
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
-    person.sayHello = function(){
-        alert("Hello from " + person.firstName + " " + person.lastName);
+    person.sayHello = function(array){
+        alert("Hello from " + array.firstName + " " + array.lastName);
     }
-    console.log(person.sayHello());
+    console.log(person.sayHello(person));
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -109,7 +109,7 @@
             }
         }
 
-    ]
+    ];
     /**
      * TODO:
      * Loop through the books array and output the following information about
@@ -151,4 +151,40 @@
      *   `showBookInfo` function.
      */
 
-})();
+
+
+    console.log(createBook("The Last Melon", "Sid", "The Sloth"));
+
+    function createBook(title, author){
+        var nameArray = author.split(" ");
+        var firstName = nameArray[0];
+        var lastName = nameArray[1];
+        return{
+            title:title,
+            author:{
+                firstName: firstName,
+                lastName: lastName
+            }
+        }
+    }
+
+    books.push(createBook("Wagnoning", "David Wagnon"))
+
+    books.forEach(function(book, index) {
+        console.log("Book # " + (index + 1));
+        console.log("Title: " + book["title"]);
+        console.log("Author: " + book.author["firstName"] + " " + book.author["lastName"]);
+
+    });
+
+    function showBookInfo(book, index){
+        console.log("Book # " + (index + 1));
+        console.log("Title: " + book["title"]);
+        console.log("Author: " + book.author["firstName"] + " " + book.author["lastName"]);
+
+    }
+
+    books.forEach(showBookInfo);
+
+    })();
+
