@@ -9,6 +9,8 @@ h2{
 }
 img{
     border:2px solid royalblue;
+    animation-duration: 5s;
+    animation-name: fadein;
 }
 body{
     background-color: antiquewhite;
@@ -52,4 +54,30 @@ a:hover {
 /* active/selected link (:active) */
 a:active {
     color:green;
+}
+
+/* Test Animation */
+p,li{
+    animation-duration: 1500ms;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+@keyframes fadein {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100%;
+    }
 }
