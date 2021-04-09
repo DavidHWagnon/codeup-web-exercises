@@ -3,39 +3,60 @@
     text-decoration: underline;
     text-align: center;
 }
+.center{
+    margin-right: auto;
+    margin-left: auto;
+}
+.button{
+    text-decoration: unset;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 3px 10px;
+    margin-left: 90%;
+    font-size: 16px;
+    box-shadow: 3px 5px;
+}
 h2{
     color: royalblue;
     text-decoration: underline;
 }
 img{
-    border:2px solid royalblue;
+    border:5px solid royalblue;
+    box-shadow: 5px 5px;
     animation-duration: 5s;
     animation-name: fadein;
 }
+.box{
+    padding-top: -10px;
+    padding-bottom: 20px;
+    width: 90%;
+    height: 95%;
+    margin:20px;
+    border: 10px double black;
+    border-radius: 25px;
+    background-image: linear-gradient(white, springgreen, lightskyblue);
+    box-shadow: 10px 15px;
+}
 body{
+    text-align: center;
     background-color: antiquewhite;
     background-image: url("https://i.pinimg.com/originals/e2/71/fd/e271fda72f1e158b5f0569cc72d36d7f.jpg");
-    background-size: auto;
-    font-family: Impact;
+    background-size: contain;
+    font-family: "Noto Sans Caucasian Albanian";
+    font-size: 20px;
 }
 li{
     list-style: square;
 }
 th{
+    position: center;
     color: darkblue;
     text-decoration: underline;
 }
-table{
-    border:4px solid black;
-}
-td,th{
-    border-right: 1px solid black;
-}
-table,td,tr{
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+table,th,td,tr{
+    margin:5px;
+    border:3px solid black;
+    background-color: lightgrey;
 }
 a:link {
     color:red;
@@ -56,7 +77,7 @@ a:active {
     color:green;
 }
 
-/* Test Animation */
+/* Test Animations */
 p,li{
     animation-duration: 1500ms;
     animation-name: slidein;
