@@ -1,0 +1,17 @@
+
+a{
+    color: #7c7c7d;
+}
+h1{
+    text-align: center;
+    color: black;
+}
+.bg-pizza{
+    background-image: url("../img/pizza.png");
+    background-size: cover;
+    height:100%;
+}
+.opaque-bg {
+    background: whitesmoke;
+    opacity: 50%;
+}

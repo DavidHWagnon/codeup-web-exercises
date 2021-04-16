@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pizza Exercise</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/custom.css" >
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Pizza World</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Order Online <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control-sm mr-sm-2" type="search" placeholder="Zip Code" aria-label="Search">
+                <button class="btn btn-outline-secondary btn-sm my-2 my-sm-0" type="submit">Search Store Near You</button>
+            </form>
+        </div>
+        <a class="nav-link" href="#">
+            <i class="bi bi-person-circle"><span class="sr-only">Sign Up</span></i>
+        </a>
+        <div class="jumbotron jumbotron-fluid bg-pizza d-none d-md-block h-25">
+            <div class="container-block opaque-bg text-light">
+                <h1 class="display-4">Welcome to Pizza World!</h1>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+
+        <h2>Build your own pizza!</h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="size-and-crust-tab" href="#size-crust" role="tab" aria-controls="size-crust" aria-selected="true">
+                    <span class="badge badge-pill badge-secondary" role="tab">1 </span>
+                    Size and Crust
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="cheese-and-sauce-tab" href="#cheese-and-sauce" role="tab" aria-controls="cheese-and-sauce" aria-selected="false">
+                    <span class="badge badge-pill badge-secondary">2 </span>
+                    Cheese and Sauce
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="toppings-tab" href="#toppings" role="tab" aria-controls="toppings" aria-selected="false">
+                    <span class="badge badge-pill badge-secondary">3 </span>
+                    Toppings
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="size-and-crust" role="tabpanel" aria-labelledby="size-and-crust-tab">
+                <div class="card">
+                    <div class="card-header bg-primary">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

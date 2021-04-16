@@ -2,7 +2,9 @@
     box-sizing: border-box;
 }
 body {
+    padding: 0;
     margin: 0;
+
 }
 nav {
     display: flex;
@@ -13,6 +15,7 @@ ul {
     padding: 0;
     margin: 0;
     display: flex;
+    justify-content: center;
     font-family: 'Work Sans', sans-serif;
 
 }
@@ -21,9 +24,9 @@ ul {
 }
 .right{
     align-items: center;
-    justify-content: flex-end;
 }
 .logo{
+
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -35,9 +38,9 @@ ul {
     text-align: center;
 }
 nav a {
+    display: inline-block;
     text-decoration: none;
     color:#1e1e1e;
-    display: inline-block;
     padding:0 5px;
     font-weight: bold;
 }
