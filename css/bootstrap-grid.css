@@ -1,4 +1,13 @@
+body{
+    margin:8px;
+    padding: 8px;
+}
 hr{
     border: 3px solid #95ab79;
     border-radius: 5px;
+}
+h3{
+    color: #4e82f7;
+    font-size: 24px;
+    font-weight:bold;
 }
