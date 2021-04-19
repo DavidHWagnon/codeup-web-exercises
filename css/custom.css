@@ -15,3 +15,7 @@ h1{
     background: whitesmoke;
     opacity: 50%;
 }
+.card {
+   margin-bottom: 16px;
+}
+
