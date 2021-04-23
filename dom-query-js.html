@@ -51,6 +51,11 @@
 
         }
         // TODO: Set text color of li with dbid = 1 to blue
+        for (var c = 0; c < listItems.length; c++) {
+            if (listItems[c].getAttribute("data-dbid" === "1")) {
+                listItems[c].style.color = "blue";
+            }
+        }
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
          var subParagraphs = document.getElementsByClassName("sub-paragraph");
