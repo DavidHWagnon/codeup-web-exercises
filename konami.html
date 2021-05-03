@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+
+  <title>Konami Code</title>
+</head>
+<body>
+<h1 class="text-center">ENTER CHEAT CODE</h1>
+
+<script src="js/jquery-3.6.0.js"></script>
+<video loop id="myVideo" class="opacity">
+  <source src="img/Rick%20Astley%20Never%20Gonna%20Give%20You%20Up%20Video.mp4" type="video/mp4">
+</video>
+<script>
+  "use strict";
+  // Stores the keyCodes for the 'cheat code'
+  var konami = [38, 38, 40, 40, 37, 39 , 37, 39, 66, 65, 13];
+
+  // Empty array that will contain keyCodes
+  var konamiAr = [];
+
+  // Sets video to be invisible
+  $(".opacity").css("opacity", "0")
+
+  // Variable that stores the embedded video
+  var Rick = document.getElementById("myVideo");
+
+  // function that listens for the proper cheat code
+  $(document).keyup(function(event){
+    console.log(event.keyCode);
+    // pushes keyCodes into konamiAr array
+    konamiAr.push(event.keyCode);
+    // Converts arrays to strings to check for equality
+    if (JSON.stringify(konami) === JSON.stringify(konamiAr)) {
+      $(".opacity").css("opacity", "100")
+      Rick.play();
+      alert("You got played, son");
+    }
+  });
+</script>
+</body>
+</html>
