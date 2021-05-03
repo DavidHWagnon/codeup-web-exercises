@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html style="height: 1080px; width: 1920px;"  lang="eng">
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="sweetalert2.all.min.js"></script>
+  <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+  <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
   <title>Konami Code</title>
+
+
+
 </head>
 <body style="height: 100%; width: 100%">
-
 <script src="js/jquery-3.6.0.js"></script>
 <div class="" style="background-size: cover; background-image: url('img/konami-code_large.webp'); height: 100%;width: 100%;">
-
   <h1 class="text-center" style="color: white">ENTER CHEAT CODE</h1>
-  <!--<div class="postion-top d-block" style="background-position: center; background-repeat:  no-repeat;background-size: cover; background-image: url('img/konami-code_large.webp'); height: 100%;width:100%"></div>-->
-
   <video loop id="myVideo" class="opacity play" style="position:fixed; right: 0; bottom: 0;min-width: 100%;min-height: 100%; z-index: auto;">
     <source src="img/Rick%20Astley%20Never%20Gonna%20Give%20You%20Up%20Video_480p.mp4" type="video/mp4">
   </video>
 </div>
 <script>
   "use strict";
+
   // Stores the keyCodes for the 'cheat code'
   var konami = [38, 38, 40, 40, 37, 39 , 37, 39, 66, 65, 13];
 
@@ -53,9 +59,14 @@
       $(".opacity").css("display", "block");
       Rick.volume = .2;
       Rick.play();
-      alert("You got played, son");
+      Swal.fire({
+        icon: 'success',
+        title: 'SUCCESS',
+        text: 'YOU GOT PLAYED, SON!',
+      })
     }
   });
 </script>
+
 </body>
 </html>
