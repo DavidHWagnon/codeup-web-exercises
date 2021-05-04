@@ -28,6 +28,9 @@
       }
       p{
         font-size: 40px;
+        color: white;
+        -webkit-text-stroke: .25px black;
+        text-decoration: underline hotpink;
       }
       dd{
         display: list-item;
@@ -41,6 +44,13 @@
         font-size: 24px;
         color: blue;
       }
+      h3{
+        font-size: 36px;
+      }
+      ul{
+        font-size: 24px;
+      }
+
     </style>
 </head>
 <body>
@@ -89,8 +99,39 @@
     FY 2016 Enacted:$2.851 billion
     FY 2017 Enacted: $2.932 billion
   </dd>
-  <a id="hide">Hide the answers</a>
 </dl>
+
+<a id="hide" class="transparent">Hide the answers</a>
+<hr>
+<br>
+<div class="transparent">
+  <h3 id="yosemite-heading">Yosemite-National-Park</h3>
+  <ul id="yosemite-facts">
+    <li>Located in California</li>
+    <li>Established as a National Park in 1890</li>
+    <li>Covers nearly 1200 miles</li>
+    <li>Approximately 20% of Californias over 7,000 plant species are located within Yosemite</li>
+  </ul>
+
+  <h3 id="yelloswtone-heading">Yellowstone-National-Park</h3>
+  <ul id="yellowstone-facts">
+    <li>Located in Wyoming and extends into Montana and Idaho</li>
+    <li>Established as a National Park in 1872</li>
+    <li>Covers nearly 3500 miles</li>
+    <li>Contains the Yellowstone Caldera; the largest super-volcano on the continent</li>
+  </ul>
+
+  <h3 id="glacier-heading">Glacier-National-Park</h3>
+  <ul id="glacier-facts">
+    <li>Located in Montana on the Canada-United States border</li>
+    <li>Established as a National Park in 1910</li>
+    <li>Covers over 1500 miles</li>
+    <li>Contains nearly all of it's original native plant and animal species</li>
+  </ul>
+</div>
+
+<button id="highlight-button">Make things Yellow</button>
+
 <script>
   // Toggles visibility for dd class
   $(document).ready(function() {
@@ -99,6 +140,8 @@
       $('dd').removeClass('invisible');
     });
   });
+
+  // toggles invisibility for dd class
   $(document).ready(function() {
     $('#hide').click(function(event) {
       event.preventDefault();
@@ -106,12 +149,41 @@
     });
   });
 
+  // Clicking on a definition title will give it a highlighted background
   $(document).ready(function() {
     $('dt').click(function(event) {
       event.preventDefault();
       $(this).toggleClass('highlighted');
     });
   });
+
+  //When clicking the called button, the last li in each ul will have a yellow background
+  $(document).ready(function() {
+    $('#highlight-button').click(function(event) {
+      event.preventDefault();
+      $('ul li:last-child').each(function(index) {
+        $(this).css('background-color', '#FF0');
+      });
+    });
+  });
+
+  // When clicking on an h3, the next item will have it's font-weight changed to bold
+  $(document).ready(function() {
+    $('h3').click(function(event) {
+      event.preventDefault();
+      $(this).next().css('font-weight', 'bold');
+    });
+  });
+
+  //When clicking on a list item, the first child of the lits item's parent element will turn blue
+  $(document).ready(function() {
+    $('li').click(function(event) {
+      event.preventDefault();
+      $(this).parent().children(':first-child').css('color', 'blue');
+    });
+  });
+
 </script>
+
 </body>
 </html>
