@@ -4,22 +4,42 @@
     <meta charset="UTF-8">
     <title>JQuery Attributes and CSS</title>
     <style>
+      body{
+        background-image: url("img/glacier-national-park-background-img.jpg");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+      }
       .highlighted {
         background-color: #FF0;
       }
       .invisible {
         visibility: hidden;
       }
+      .transparent {
+        background-color: rgba(255,255,255,0.75);
+      }
+      dl{
+        font-family: "Roboto Light",sans-serif;
+      }
       dt{
-        font-size: 24px;
+        font-size: 32px;
+        font-style: italic;
+
       }
       p{
-        font-size: 36px;
+        font-size: 40px;
       }
       dd{
-        font-size: 20px;
+        display: list-item;
+        font-size: 24px;
         margin-bottom: 8px;
         margin-top: 8px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+      a{
+        font-size: 24px;
+        color: blue;
       }
     </style>
 </head>
@@ -27,9 +47,9 @@
 <script src="js/jquery-3.6.0.js"></script>
 <p>About the National Park Service</p>
 
-<a id="show">Show Me the Answers</a>
+<a id="show" class="transparent">Show Me the Answers</a>
 
-<dl>
+<dl class="transparent">
   <dt>Who is the director of the National Park Service?</dt>
   <dd class ="invisible">Shawn Benge, Deputy Director, Operations, is exercising the delegated authority of the Director of the National Park Service.</dd>
 
