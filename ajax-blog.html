@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog Exercise</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Nanum Gothic Coding', monospace;
+            font-size: large;
+        }
+        body{
+            background-size: cover;
+            background-image: url("img/parchment-background.jpg");
+        }
+        #posts, button{
+            background-color: rgba(219, 185, 121, .5);
+            border: 2px solid black;
+        }
+        #seal{
+            background-image: url("img/imperial-seal.png");
+            background-position:center;
+            background-size: auto;
+            height: 277px;
+            width: 789px;
+        }
+        hr{
+            background-color: black;
+            height: 3px;
+        }
+    </style>
+</head>
+<body>
+<div id="seal" class="container"></div>
+
+<div id="posts" class="container mt-5">
+
+
+</div>
+<button id="refresh">Refresh</button>
+
+<script>
+    (function() {
+        "use strict";
+        // TODO: Create an AJAX GET request for the file under data/inventory.json
+        function products(){
+            $('#posts').html("");
+            $.ajax("data/blog.json").done(function (products){
+                for (var i = 0; i < products.length; i++){
+                    var htmlAppend = "<ul id = 'product-table'>";
+                    htmlAppend += "<li><h3>" + products[i].title + "</h3></li>";
+                    htmlAppend += "<li>" + products[i].content + "</li>";
+                    htmlAppend += "<li>" + products[i].categories + "</li>";
+                    htmlAppend += "<li>" + products[i].date + "</li>";
+                    htmlAppend += "</ul>";
+                    htmlAppend += "<hr>";
+
+                    $('#posts').append(htmlAppend);
+                }
+            });
+        }
+        $('#refresh').click(function (event){
+            event.preventDefault();
+            products();
+        });
+
+        products();
+    })();
+</script>
+</body>
+</html>

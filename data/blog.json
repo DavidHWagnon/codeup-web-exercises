@@ -1,0 +1,20 @@
+[
+    {
+        "title": "My First Blog Post",
+        "content": "It is the 41st Millennium. For more than a hundred centuries The Emperor has sat immobile on the Golden Throne of Earth. He is the Master of Mankind by the will of the gods, and master of a million worlds by the might of his inexhaustible armies. He is a rotting carcass writhing invisibly with power from the Dark Age of Technology. He is the Carrion Lord of the Imperium for whom a thousand souls are sacrificed every day, so that he may never truly die. ",
+        "categories": [
+            "greek"
+        ],
+        "date": "January 25, 2015"
+    }, {
+        "title": "The Second Post",
+        "content": "Yet even in his deathless state, the Emperor continues his eternal vigilance. Mighty battlefleets cross the daemon-infested miasma of the Warp, the only route between distant stars, their way lit by the Astronomican, the psychic manifestation of the Emperor's will. Vast armies give battle in his name on uncounted worlds. Greatest amongst his soldiers are the Adeptus Astartes, the Space Marines, bio-engineered super-warriors. Their comrades in arms are legion: the Imperial Guard and countless planetary defence forces, the ever vigilant Inquisition and the tech-priests of the Adeptus Mechanicus to name only a few. But for all their multitudes, they are barely enough to hold off the ever-present threat from aliens, heretics, mutants - and worse.",
+        "categories": [
+            "family",
+            "candy",
+            "sweets",
+            "sugar"
+        ],
+        "date": "February 14, 2015"
+    }
+]
