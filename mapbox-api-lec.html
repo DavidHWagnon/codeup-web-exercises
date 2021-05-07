@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox Lecture</title>
+    <style>
+    </style>
+</head>
+<body>
+<h1>Welcome to MapBox Lecture</h1>
+
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+
+<script src="js/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+
+
+<script>
+  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+  var map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-98.4916, 29.4252], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+  });
+
+  map.setStyle('mapbox://styles/mapbox/satellite-v9')
+  map.setZoom(9);
+
+  map.addControl(new mapboxgl.NavigationControl());
+  var marker = new mapboxgl.Marker({
+      color: 'red'
+  })
+      .setLngLat([-97.0403, 32.8998])
+      .setDraggable(true)
+      .addTo(map);
+
+  marker.on('dragend', function(){
+      alert(marker.getLngLat().toString())
+  })
+
+  var popup = new mapboxgl.Popup()
+  .setLngLat()
+  .setHTML(<h3>The Alamo</h3>)
+  .setMaxWidth("100px")
+  .addTo(map)
+
+  console.log(popup);
+
+  popup.addClassName('popup-fon');
+
+</script>
+
+</body>
+</html>
