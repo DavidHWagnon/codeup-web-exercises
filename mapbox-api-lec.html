@@ -10,10 +10,14 @@
 <h1>Welcome to MapBox Lecture</h1>
 
 
-<div id='map' style='width: 400px; height: 300px;'></div>
+<div id='map' style='width: 600px; height: 500px;'></div>
 
 <script src="js/keys.js"></script>
+
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+<script src="js/mapbox-geocoder-utils.js"></script>
+
 
 
 <script>
@@ -22,17 +26,18 @@
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
     center: [-98.4916, 29.4252], // starting position [lng, lat]
-    zoom: 9 // starting zoom
+    zoom: 12 // starting zoom
   });
 
-  map.setStyle('mapbox://styles/mapbox/satellite-v9')
-  map.setZoom(9);
+  // map.setStyle('mapbox://styles/mapbox/satellite-v9')
+  // map.setZoom(9);
 
   map.addControl(new mapboxgl.NavigationControl());
+
   var marker = new mapboxgl.Marker({
       color: 'red'
   })
-      .setLngLat([-97.0403, 32.8998])
+      .setLngLat([-98.706329, 29.436058])
       .setDraggable(true)
       .addTo(map);
 
@@ -41,14 +46,22 @@
   })
 
   var popup = new mapboxgl.Popup()
-  .setLngLat()
-  .setHTML(<h3>The Alamo</h3>)
+  .setLngLat(marker.getLngLat())
+  .setHTML("<h3>The Alamo</h3>")
   .setMaxWidth("100px")
-  .addTo(map)
+  .addTo(map);
 
   console.log(popup);
 
-  popup.addClassName('popup-fon');
+
+
+
+  geocode("San Antonio", MAPBOX_ACCESS_TOKEN).then(function (results){
+      console.log(results);
+  })
+
+
+
 
 </script>
 

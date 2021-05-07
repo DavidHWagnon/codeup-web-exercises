@@ -2,50 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mapbox 2</title>
-</head>
-<body>
-<script src="js/keys.js"></script>
+    <title>Mapbox Exercise</title>
 
+
+<script src="js/keys.js"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
-
+<script src="js/mapbox-geocoder-utils.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 
+
+
+</head>
+<body>
 <h1></h1>
 <div id='map' style='width: 600px; height: 500px;'></div>
 <script>
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
-  //Map centered around New York
   var map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-74.2179, 43.2994], // starting position [lng, lat]
-    zoom: 5 // starting zoom
+    center: [-98.4936, 29.4241], // starting position [lng, lat]
+    zoom: 9 // starting zoom
   });
 
-  // Marker at Statue of Liberty
+
+
   var marker = new mapboxgl.Marker({
-      color:'red'
+    color: 'red'
   })
-      .setLngLat([-74.0445, 40.6892])
-      .addTo(map);
+    .setLngLat([-98.706329,29.436058])
+    .addTo(map);
 
 
   var popup = new mapboxgl.Popup()
       .setLngLat(marker.getLngLat())
-      .setHTML("<h3>Statue of Liberty</h3>")
-      .addTo(map);
+      .setHTML("<h3>Burger King</h3>")
+
+
 
   marker.setPopup(popup);
 
   marker.setDraggable(true);
 
+  $(marker).click(function(){
+      popup.addTo(map);
+  })
+
   marker.on('dragend', function(){
       $('h1').html(marker.getLngLat().toString())
   })
-
-
 
 </script>
 
