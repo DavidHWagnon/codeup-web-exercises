@@ -18,7 +18,6 @@
         }
         #posts, button{
             background-color: rgba(219, 185, 121, .5);
-            border: 2px solid black;
         }
         #seal{
             background-image: url("img/imperial-seal.png");
@@ -31,14 +30,17 @@
             background-color: black;
             height: 3px;
         }
+        ul{
+            list-style: square;
+        }
     </style>
 </head>
 <body>
 <div id="seal" class="container"></div>
+<div class="table">
+    <div id="posts" class="container mt-5">
 
-<div id="posts" class="container mt-5">
-
-
+    </div>
 </div>
 <button id="refresh">Refresh</button>
 
@@ -50,12 +52,12 @@
             $('#posts').html("");
             $.ajax("data/blog.json").done(function (products){
                 for (var i = 0; i < products.length; i++){
-                    var htmlAppend = "<ul id = 'product-table'>";
-                    htmlAppend += "<li><h3>" + products[i].title + "</h3></li>";
-                    htmlAppend += "<li>" + products[i].content + "</li>";
-                    htmlAppend += "<li>" + products[i].categories + "</li>";
-                    htmlAppend += "<li>" + products[i].date + "</li>";
-                    htmlAppend += "</ul>";
+                    var htmlAppend = "<tr id = 'product-table' class='col'>";
+                    htmlAppend += "<th class='row d-flex align-self-center'><h3>" + products[i].title + "</h3>" + products[i].date + "</th>";
+                    htmlAppend += "<th class='row'>" + products[i].content + "</th>";
+                    htmlAppend += "<th class='row'>" + products[i].categories + "</th>";
+                    htmlAppend += "<th class='row'>" + products[i].date + "</th>";
+                    htmlAppend += "</tr>";
                     htmlAppend += "<hr>";
 
                     $('#posts').append(htmlAppend);
