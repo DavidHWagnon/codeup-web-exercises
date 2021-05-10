@@ -17,15 +17,21 @@
 <body>
 <h1></h1>
 <div id='map' style='width: 600px; height: 500px;'></div>
+
+<button id="zoom5">Zoom - 5</button>
+<button id="zoom15">Zoom - 15</button>
+<button id="zoom20">Zoom - 20</button>
 <script>
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
   var map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
     center: [-98.4936, 29.4241], // starting position [lng, lat]
-    zoom: 9 // starting zoom
+    zoom: 5 // starting zoom
   });
+  map.addControl(new mapboxgl.NavigationControl());
 
+  // Array containing name and location of favorite restaurants
  var faveFood = [
      {
          name: "Buger King",
@@ -41,6 +47,7 @@
      }
  ]
 
+  //for-loop geocode function to print out information from array and create marker/popup in the mapbox at the set location
   faveFood.forEach(function (restaurant){
       geocode(restaurant.location, MAPBOX_ACCESS_TOKEN).then(function(position){
           console.log(position)
@@ -52,6 +59,24 @@
             .setPopup(popup);
       });
   });
+
+  $('#zoom5').click(function (e){
+    map.flyTo({
+        zoom:5
+    })
+  })
+  $('#zoom15').click(function (e){
+      map.flyTo({
+          zoom:15
+      })
+  })
+  $('#zoom20').click(function (e){
+      map.flyTo({
+          zoom:20
+      })
+  })
+
+
 
 
   // var marker = new mapboxgl.Marker({
