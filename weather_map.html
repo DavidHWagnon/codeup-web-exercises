@@ -24,12 +24,19 @@
             height: 75px;
             width: 75px;
         }
-        #currentCity{
+        #currentLocation{
             font-size: 30px;
             color: gainsboro;
         }
         .card-header{
             font-size: large;
+        }
+        #searchForm{
+            background-color: rgba(225,225,225, .2);
+        }
+        .card-text{
+            border-bottom: 1px solid gray;
+            padding-bottom: 8px;
         }
     </style>
 
@@ -40,7 +47,7 @@
   <a class="navbar-brand" href="#">Weather App</a>
     <p id="currentLocation" class="m-0 d-flex justify-self-center">Current City: San Antonio</p>
 </nav>
-<div class=" row p-4 d-flex jumbotron">
+<div id="searchForm" class=" row p-4 d-flex ">
         <form class="form-inline ml-5">
             <p class="d-flex align-self-center pr-3 m-0 ">Places</p>
             <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -59,8 +66,9 @@
             Date
         </div>
         <div class="card-body">
-            <img id="dayOneIcon" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayOneTemp" class="card-title">Temperature</h3>
+            <img id="dayOneIcon" class="" src="img/weatherbit-icons/a01d.png">
+            <h3 id="dayOneCurrentTemp" class="card-text">Current Temp</h3>
+            <h5 id="dayOneTemp" class="card-text">Temperature</h5>
             <p id="dayOneDesc" class="card-text">Weather Description</p>
             <p id="dayOnePrecip" class="card-text">Change of Precipitation</p>
         </div>
@@ -72,8 +80,9 @@
             Date
         </div>
         <div class="card-body">
-            <img id="dayTwoIcon" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayTwoTemp" class="card-title">Temperature</h3>
+            <img id="dayTwoIcon" class="" src="img/weatherbit-icons/a01d.png">
+            <h3 id="dayTwoCurrentTemp" class="card-text">Current Temp</h3>
+            <h5 id="dayTwoTemp" class="card-text">Temperature</h5>
             <p id="dayTwoDesc" class="card-text">Weather Description</p>
             <p id="dayTwoPrecip" class="card-text">Change of Precipitation</p>
         </div>
@@ -85,8 +94,9 @@
             Date
         </div>
         <div class="card-body">
-            <img id="dayThreeIcon" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayThreeTemp" class="card-title">Temperature</h3>
+            <img id="dayThreeIcon" class="" src="img/weatherbit-icons/a01d.png">
+            <h3 id="dayThreeCurrentTemp" class="card-text">Current Temp</h3>
+            <h5 id="dayThreeTemp" class="card-text">Temperature</h5>
             <p id="dayThreeDesc" class="card-text">Weather Description</p>
             <p id="dayThreePrecip" class="card-text">Change of Precipitation</p>
         </div>
@@ -98,8 +108,9 @@
             Date
         </div>
         <div class="card-body">
-            <img id="dayFourIcon" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayFourTemp" class="card-title">Temperature</h3>
+            <img id="dayFourIcon" class="" src="img/weatherbit-icons/a01d.png">
+            <h3 id="dayFourCurrentTemp" class="card-text">Current Temp</h3>
+            <h5 id="dayFourTemp" class="card-text">Temperature</h5>
             <p id="dayFourDesc" class="card-text">Weather Description</p>
             <p id="dayFourPrecip" class="card-text">Change of Precipitation</p>
         </div>
@@ -111,8 +122,9 @@
             Date
         </div>
         <div class="card-body">
-            <img id="dayFiveIcon" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayFiveTemp" class="card-title">Temperature</h3>
+            <img id="dayFiveIcon" class="" src="img/weatherbit-icons/a01d.png">
+            <h3 id="dayFiveCurrentTemp" class="card-text">Current Temp</h3>
+            <h3 id="dayFiveTemp" class="card-text">Temperature</h3>
             <p id="dayFiveDesc" class="card-text">Weather Description</p>
             <p id="dayFivePrecip" class="card-text">Change of Precipitation</p>
         </div>
@@ -134,35 +146,41 @@
     var coords = [-98.4936, 29.4241];
     function getWeather(coords){
         $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" + coords[0] + "&lat=" + coords[1] + "&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (weather) {
-            console.log(weather)
+
+            $('#currentLocation').html("Current Location: " +  weather.city_name.toString())
 
             $('#dayOneDate').html(weather.data[0].valid_date.toString())
             $('#dayOneIcon').attr("src", ("img/weatherbit-icons/" + weather.data[0].weather.icon.toString() + ".png"))
+            $('#dayOneCurrentTemp').html(weather.data[0].temp + "℉ ")
             $('#dayOneTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[0].high_temp.toString() + "℉")
             $('#dayOneDesc').html("Description : " + weather.data[0].weather.description.toString())
             $('#dayOnePrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[0].precip.toString())*100) + "%")
 
             $('#dayTwoDate').html(weather.data[1].valid_date.toString())
             $('#dayTwoIcon').attr("src", ("img/weatherbit-icons/" + weather.data[1].weather.icon.toString() + ".png"))
-            $('#dayTwoTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[1].high_temp.toString() + "℉")
+            $('#dayTwoCurrentTemp').html(weather.data[1].temp + "℉ ")
+            $('#dayTwoTemp').html(weather.data[1].low_temp.toString() + "℉ / " + weather.data[1].high_temp.toString() + "℉")
             $('#dayTwoDesc').html("Description : " + weather.data[1].weather.description.toString())
             $('#dayTwoPrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[1].precip.toString())*100) + "%")
 
             $('#dayThreeDate').html(weather.data[2].valid_date.toString())
             $('#dayThreeIcon').attr("src", ("img/weatherbit-icons/" + weather.data[2].weather.icon.toString() + ".png"))
-            $('#dayThreeTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[2].high_temp.toString() + "℉")
+            $('#dayThreeCurrentTemp').html(weather.data[2].temp + "℉ ")
+            $('#dayThreeTemp').html(weather.data[2].low_temp.toString() + "℉ / " + weather.data[2].high_temp.toString() + "℉")
             $('#dayThreeDesc').html("Description : " + weather.data[2].weather.description.toString())
             $('#dayThreePrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[2].precip.toString())*100) + "%")
 
             $('#dayFourDate').html(weather.data[3].valid_date.toString())
             $('#dayFourIcon').attr("src", ("img/weatherbit-icons/" + weather.data[3].weather.icon.toString() + ".png"))
-            $('#dayFourTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[3].high_temp.toString() + "℉")
+            $('#dayFourCurrentTemp').html(weather.data[3].temp + "℉ ")
+            $('#dayFourTemp').html(weather.data[3].low_temp.toString() + "℉ / " + weather.data[3].high_temp.toString() + "℉")
             $('#dayFourDesc').html("Description : " + weather.data[3].weather.description.toString())
             $('#dayFourPrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[3].precip.toString())*100) + "%")
 
             $('#dayFiveDate').html(weather.data[4].valid_date.toString())
             $('#dayFiveIcon').attr("src", ("img/weatherbit-icons/" + weather.data[4].weather.icon.toString() + ".png"))
-            $('#dayFiveTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[4].high_temp.toString() + "℉")
+            $('#dayFiveCurrentTemp').html(weather.data[4].temp + "℉ ")
+            $('#dayFiveTemp').html(weather.data[4].low_temp.toString() + "℉ / " + weather.data[4].high_temp.toString() + "℉")
             $('#dayFiveDesc').html("Description : " + weather.data[4].weather.description.toString())
             $('#dayFivePrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[4].precip.toString())*100) + "%")
         })
@@ -179,7 +197,8 @@
         var coords = marker.getLngLat().toArray()
         getWeather(coords);
         reverseGeocode({lat: coords[0], lng: coords[1]}, "pk.eyJ1IjoidHltZWkiLCJhIjoiY2tvZWdlNGp0MGE2azJ2b2M4MDk1bG93MSJ9.bZAESmR55PH-pCyme1t00Q").then(function(results) {
-            $("#currentCity").html(results.features[0].center)
+            console.log(results)
+            // $("#currentCity").html(results.features[0].center)
            })
     })
 
