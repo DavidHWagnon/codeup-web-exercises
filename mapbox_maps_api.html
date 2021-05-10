@@ -26,32 +26,59 @@
     zoom: 9 // starting zoom
   });
 
+ var faveFood = [
+     {
+         name: "Buger King",
+         location: "10903 Potranco Rd, San Antonio, TX 78251"
+     },
+     {
+         name: "Hon Machi",
+         location: "11026 Culebra Rd ste 109, San Antonio, TX 78253"
+     },
+     {
+         name: "Genghis Grill",
+         location: "8603 Texas 151 Access Rd 109, San Antonio, TX 78245"
+     }
+ ]
+
+  faveFood.forEach(function (restaurant){
+      geocode(restaurant.location, MAPBOX_ACCESS_TOKEN).then(function(position){
+          console.log(position)
+          var popup = new mapboxgl.Popup()
+            .setHTML('<h3>' + restaurant.name + '</h3>');
+          var marker = new mapboxgl.Marker()
+            .setLngLat(position)
+            .addTo(map)
+            .setPopup(popup);
+      });
+  });
 
 
-  var marker = new mapboxgl.Marker({
-    color: 'red'
-  })
-    .setLngLat([-98.706329,29.436058])
-    .addTo(map);
+  // var marker = new mapboxgl.Marker({
+  //   color: 'red'
+  // })
+  //   .setLngLat([-98.706329,29.436058])
+  //   .addTo(map);
+  //
+  //
+  // var popup = new mapboxgl.Popup()
+  //     .setLngLat(marker.getLngLat())
+  //     .setHTML("<h3>Burger King</h3>")
+  //
+  // $(marker).click(function(){
+  //     console.log("nice")
+  //     popup.addTo(map);
+  // })
+
+  // marker.setPopup(popup);
+  //
+  // marker.setDraggable(true);
 
 
-  var popup = new mapboxgl.Popup()
-      .setLngLat(marker.getLngLat())
-      .setHTML("<h3>Burger King</h3>")
 
-
-
-  marker.setPopup(popup);
-
-  marker.setDraggable(true);
-
-  $(marker).click(function(){
-      popup.addTo(map);
-  })
-
-  marker.on('dragend', function(){
-      $('h1').html(marker.getLngLat().toString())
-  })
+  // marker.on('dragend', function(){
+  //     $('h1').html(marker.getLngLat().toString())
+  // })
 
 </script>
 
