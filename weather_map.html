@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="js/jquery-3.6.0.js"></script>
 
-
-
-
     <style>
         body{
             background-image: url("img/navbar-weather.gif");
@@ -31,6 +28,9 @@
             font-size: 30px;
             color: gainsboro;
         }
+        .card-header{
+            font-size: large;
+        }
     </style>
 
 </head>
@@ -38,7 +38,7 @@
 
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary d-flex justify-content-between">
   <a class="navbar-brand" href="#">Weather App</a>
-    <p id="currentCity" class="m-0 d-flex justify-self-center">Current City: San Antonio</p>
+    <p id="currentLocation" class="m-0 d-flex justify-self-center">Current City: San Antonio</p>
 </nav>
 <div class=" row p-4 d-flex jumbotron">
         <form class="form-inline ml-5">
@@ -51,7 +51,7 @@
     <div id='map' style='width: 95%; height: 650px; position: center'></div>
 </div>
 
-<div class="row d-flex justify-content-around m-3   ">
+<div class="row d-flex justify-content-around m-3">
 
 <!--    Day One Card-->
     <div class="card col-2">
@@ -62,7 +62,6 @@
             <img id="dayOneIcon" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayOneTemp" class="card-title">Temperature</h3>
             <p id="dayOneDesc" class="card-text">Weather Description</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
 
@@ -75,7 +74,6 @@
             <img id="dayTwoIcon" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayTwoTemp" class="card-title">Temperature</h3>
             <p id="dayTwoDesc" class="card-text">Weather Description</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
 
@@ -88,7 +86,6 @@
             <img id="dayThreeIcon" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayThreeTemp" class="card-title">Temperature</h3>
             <p id="dayThreeDesc" class="card-text">Weather Description</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
 
@@ -101,7 +98,6 @@
             <img id="dayFourIcon" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayFourTemp" class="card-title">Temperature</h3>
             <p id="dayFourDesc" class="card-text">Weather Description</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
 
@@ -114,16 +110,14 @@
             <img id="dayFiveIcon" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayFiveTemp" class="card-title">Temperature</h3>
             <p id="dayFiveDesc" class="card-text">Weather Description</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
-
 </div>
-<div id="test"></div>
 
 
 <script>
     mapboxgl.accessToken = "pk.eyJ1IjoidHltZWkiLCJhIjoiY2tvZWdlNGp0MGE2azJ2b2M4MDk1bG93MSJ9.bZAESmR55PH-pCyme1t00Q";
+    // Default Map centered at San Antonio
     var map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
@@ -131,10 +125,41 @@
         zoom: 11 // starting zoom
     });
     map.addControl(new mapboxgl.NavigationControl());
+    //Default Weather Settings from San Antonio
+    $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=-98.4936&lat=29.4241&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (weather) {
+        console.log(weather)
+        console.log("img/weatherbit-icons/" + weather.data[0].weather.icon.toString() + ".png")
+        $('#dayOneDate').html(weather.data[0].valid_date.toString())
+        $('#dayOneIcon').attr("src", ("img/weatherbit-icons/" + weather.data[0].weather.icon.toString() + ".png"))
+        $('#dayOneTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[0].high_temp.toString() + "℉")
+        $('#dayOneDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+        $('#dayTwoDate').html(weather.data[1].valid_date.toString())
+        $('#dayTwoIcon').attr("src", ("img/weatherbit-icons/" + weather.data[1].weather.icon.toString() + ".png"))
+        $('#dayTwoTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[1].high_temp.toString() + "℉")
+        $('#dayTwoDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+        $('#dayThreeDate').html(weather.data[2].valid_date.toString())
+        $('#dayThreeIcon').attr("src", ("img/weatherbit-icons/" + weather.data[2].weather.icon.toString() + ".png"))
+        $('#dayThreeTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[2].high_temp.toString() + "℉")
+        $('#dayThreeDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+        $('#dayFourDate').html(weather.data[3].valid_date.toString())
+        $('#dayFourIcon').attr("src", ("img/weatherbit-icons/" + weather.data[3].weather.icon.toString() + ".png"))
+        $('#dayFourTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[3].high_temp.toString() + "℉")
+        $('#dayFourDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+        $('#dayFiveDate').html(weather.data[4].valid_date.toString())
+        $('#dayFiveIcon').attr("src", ("img/weatherbit-icons/" + weather.data[4].weather.icon.toString() + ".png"))
+        $('#dayFiveTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[4].high_temp.toString() + "℉")
+        $('#dayFiveDesc').html("Description : " + weather.data[0].weather.description.toString())
+    })
+    //Default Marker at San Antonio
     var marker = new mapboxgl.Marker()
         .setLngLat([-98.4936, 29.4241])
         .setDraggable(true)
         .addTo(map);
+    // Function to update weather settings upon dragging the marker
     marker.on('dragend', function(){
         var coords = marker.getLngLat().toArray()
         $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" +coords[0] + "&lat=" +coords[1] + "&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (weather){
@@ -165,36 +190,58 @@
             $('#dayFiveTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[4].high_temp.toString() + "℉")
             $('#dayFiveDesc').html("Description : " + weather.data[0].weather.description.toString())
         });
+
     })
 
 
-
+    // Function for search bar
     $("#searchButton").click(function(e){
         e.preventDefault()
+        // holds value of input
         barResults = $('#searchBar').val();
         console.log(barResults);
+        $("#currentLocation").html("Current City: " + barResults.toString());
+        // geocodes input location
         geocode(barResults, "pk.eyJ1IjoidHltZWkiLCJhIjoiY2tvZWdlNGp0MGE2azJ2b2M4MDk1bG93MSJ9.bZAESmR55PH-pCyme1t00Q").then(function(results) {
             console.log(results.features[0].center)
+            // holds coordinates of input location in an array
             var coords = results.features[0].center;
+            // sets the new center of the map to input location
             map.flyTo({
                 center: [coords[0],coords[1]]
             })
+            //sets marker at new location
             marker.setLngLat([coords[0],coords[1]]);
+            $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" +coords[0] + "&lat=" +coords[1] + "&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (weather){
+                console.log(weather)
+                console.log("img/weatherbit-icons/"+weather.data[0].weather.icon.toString() +".png")
+                $('#dayOneDate').html(weather.data[0].valid_date.toString())
+                $('#dayOneIcon').attr("src", ("img/weatherbit-icons/"+weather.data[0].weather.icon.toString() +".png"))
+                $('#dayOneTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[0].high_temp.toString() + "℉")
+                $('#dayOneDesc').html("Description : " + weather.data[0].weather.description.toString())
 
+                $('#dayTwoDate').html(weather.data[1].valid_date.toString())
+                $('#dayTwoIcon').attr("src", ("img/weatherbit-icons/"+weather.data[1].weather.icon.toString() +".png"))
+                $('#dayTwoTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[1].high_temp.toString() + "℉")
+                $('#dayTwoDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+                $('#dayThreeDate').html(weather.data[2].valid_date.toString())
+                $('#dayThreeIcon').attr("src", ("img/weatherbit-icons/"+weather.data[2].weather.icon.toString() +".png"))
+                $('#dayThreeTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[2].high_temp.toString() + "℉")
+                $('#dayThreeDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+                $('#dayFourDate').html(weather.data[3].valid_date.toString())
+                $('#dayFourIcon').attr("src", ("img/weatherbit-icons/"+weather.data[3].weather.icon.toString() +".png"))
+                $('#dayFourTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[3].high_temp.toString() + "℉")
+                $('#dayFourDesc').html("Description : " + weather.data[0].weather.description.toString())
+
+                $('#dayFiveDate').html(weather.data[4].valid_date.toString())
+                $('#dayFiveIcon').attr("src", ("img/weatherbit-icons/"+weather.data[4].weather.icon.toString() +".png"))
+                $('#dayFiveTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[4].high_temp.toString() + "℉")
+                $('#dayFiveDesc').html("Description : " + weather.data[0].weather.description.toString())
+            });
         })
     })
-</script>
-
-
-
-
-<script>
-
-    var coordinates= [29.4241, -98.4936];
-
-    $.get("https://api.weatherbit.io/v2.0/forecast/daily?&units=I&lon=" +coordinates[1] + "&lat=" +coordinates[0] + "&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (resp){
-        console.log(resp)
-    });
 </script>
 </body>
 </html>
