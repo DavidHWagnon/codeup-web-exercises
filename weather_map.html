@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Map Project</title>
-    <link href="js/keys.js">
+    <script src="js/keys.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
     <script src="js/mapbox-geocoder-utils.js"></script>
@@ -12,13 +12,21 @@
 
     <style>
         body{
-            background-image: url("img/navbar-weather.gif");
-            background-size: 80%;
-            background-position-x: center;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             font-family: 'Montserrat', sans-serif;
         }
-        p{
-            font-weight: bolder;
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         img{
             height: 75px;
@@ -30,38 +38,47 @@
         }
         .card-header{
             font-size: large;
-        }
-        #searchForm{
-            background-color: rgba(225,225,225, .2);
+            border-bottom: 1px solid lightslategray;
         }
         .card-text{
             border-bottom: 1px solid gray;
             padding-bottom: 8px;
         }
+        #places{
+            font-size: x-large;
+        }
+        #searchForm{
+            background-color: rgba(255,255,255,0.4);
+        }
+        .card{
+            background-color: rgba(52,51,50,0.6);
+        }
+
+
     </style>
 
 </head>
 <body>
 
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary d-flex justify-content-between">
-  <a class="navbar-brand" href="#">Weather App</a>
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between">
+  <a class="navbar-brand" href="#">Weather Map : by David Wagnon</a>
     <p id="currentLocation" class="m-0 d-flex justify-self-center">Current City: San Antonio</p>
 </nav>
-<div id="searchForm" class=" row p-4 d-flex ">
+<div id="searchForm" class=" row p-4 d-flex jumbotron jumbotron-fluid">
         <form class="form-inline ml-5">
-            <p class="d-flex align-self-center pr-3 m-0 ">Places</p>
+            <p id="places" class="d-flex align-self-center pr-3 m-0 ">Places</p>
             <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button id="searchButton" class="btn bg-primary my-2 my-sm-0" type="submit">Find</button>
+            <button id="searchButton" class="btn bg-light my-2 my-sm-0" type="submit">Find</button>
         </form>
 </div>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mt-3">
     <div id='map' style='width: 95%; height: 650px; position: center'></div>
 </div>
 
-<div class="row d-flex justify-content-around m-3">
+<div class="row d-flex justify-content-around m-3 ">
 
 <!--    Day One Card-->
-    <div class="card col-2">
+    <div class="card col-2 p-0 text-white">
         <div id="dayOneDate" class="card-header">
             Date
         </div>
@@ -75,11 +92,11 @@
     </div>
 
 <!--    Day Two Card-->
-    <div class="card col-2">
+    <div class="card col-2 p-0 m-0 text-white">
         <div id="dayTwoDate" class="card-header">
             Date
         </div>
-        <div class="card-body">
+        <div class="card-body text-white">
             <img id="dayTwoIcon" class="" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayTwoCurrentTemp" class="card-text">Current Temp</h3>
             <h5 id="dayTwoTemp" class="card-text">Temperature</h5>
@@ -89,7 +106,7 @@
     </div>
 
 <!--    Day Three Card-->
-    <div class="card col-2">
+    <div class="card col-2 p-0 m-0 text-white">
         <div id="dayThreeDate" class="card-header">
             Date
         </div>
@@ -103,7 +120,7 @@
     </div>
 
 <!--    Day Four Card-->
-    <div class="card col-2">
+    <div class="card col-2 p-0 m-0 text-white">
         <div id="dayFourDate" class="card-header">
             Date
         </div>
@@ -117,14 +134,14 @@
     </div>
 
 <!--    //Day Five Card-->
-    <div class="card col-2">
+    <div class="card col-2 p-0 m-0 text-white">
         <div id="dayFiveDate" class="card-header">
             Date
         </div>
         <div class="card-body">
             <img id="dayFiveIcon" class="" src="img/weatherbit-icons/a01d.png">
             <h3 id="dayFiveCurrentTemp" class="card-text">Current Temp</h3>
-            <h3 id="dayFiveTemp" class="card-text">Temperature</h3>
+            <h5 id="dayFiveTemp" class="card-text">Temperature</h5>
             <p id="dayFiveDesc" class="card-text">Weather Description</p>
             <p id="dayFivePrecip" class="card-text">Change of Precipitation</p>
         </div>
@@ -133,11 +150,11 @@
 
 
 <script>
-    mapboxgl.accessToken = "pk.eyJ1IjoidHltZWkiLCJhIjoiY2tvZWdlNGp0MGE2azJ2b2M4MDk1bG93MSJ9.bZAESmR55PH-pCyme1t00Q";
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
     // Default Map centered at San Antonio
     var map = new mapboxgl.Map({
         container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        style: 'mapbox://styles/mapbox/dark-v10', // style URL
         center: [-98.4936, 29.4241], // starting position [lng, lat]
         zoom: 11 // starting zoom
     });
@@ -145,7 +162,10 @@
     //Default Weather Settings from San Antonio
     var coords = [-98.4936, 29.4241];
     function getWeather(coords){
-        $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" + coords[0] + "&lat=" + coords[1] + "&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (weather) {
+
+        $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" + coords[0] + "&lat=" + coords[1] + "&key=" + WEATHER_BIT_ACCESS_TOKEN).done(function (weather) {
+
+
 
             $('#currentLocation').html("Current Location: " +  weather.city_name.toString())
 
@@ -154,35 +174,35 @@
             $('#dayOneCurrentTemp').html(weather.data[0].temp + "℉ ")
             $('#dayOneTemp').html(weather.data[0].low_temp.toString() + "℉ / " + weather.data[0].high_temp.toString() + "℉")
             $('#dayOneDesc').html("Description : " + weather.data[0].weather.description.toString())
-            $('#dayOnePrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[0].precip.toString())*100) + "%")
+            $('#dayOnePrecip').html("Chance of Precipitation: " + Math.round(parseFloat(weather.data[0].precip.toString())*10) + "%")
 
             $('#dayTwoDate').html(weather.data[1].valid_date.toString())
             $('#dayTwoIcon').attr("src", ("img/weatherbit-icons/" + weather.data[1].weather.icon.toString() + ".png"))
             $('#dayTwoCurrentTemp').html(weather.data[1].temp + "℉ ")
             $('#dayTwoTemp').html(weather.data[1].low_temp.toString() + "℉ / " + weather.data[1].high_temp.toString() + "℉")
             $('#dayTwoDesc').html("Description : " + weather.data[1].weather.description.toString())
-            $('#dayTwoPrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[1].precip.toString())*100) + "%")
+            $('#dayTwoPrecip').html("Chance of Precipitation: " + Math.round(parseFloat(weather.data[1].precip.toString())*10) + "%")
 
             $('#dayThreeDate').html(weather.data[2].valid_date.toString())
             $('#dayThreeIcon').attr("src", ("img/weatherbit-icons/" + weather.data[2].weather.icon.toString() + ".png"))
             $('#dayThreeCurrentTemp').html(weather.data[2].temp + "℉ ")
             $('#dayThreeTemp').html(weather.data[2].low_temp.toString() + "℉ / " + weather.data[2].high_temp.toString() + "℉")
             $('#dayThreeDesc').html("Description : " + weather.data[2].weather.description.toString())
-            $('#dayThreePrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[2].precip.toString())*100) + "%")
+            $('#dayThreePrecip').html("Chance of Precipitation: " + Math.round(parseFloat(weather.data[2].precip.toString())*10) + "%")
 
             $('#dayFourDate').html(weather.data[3].valid_date.toString())
             $('#dayFourIcon').attr("src", ("img/weatherbit-icons/" + weather.data[3].weather.icon.toString() + ".png"))
             $('#dayFourCurrentTemp').html(weather.data[3].temp + "℉ ")
             $('#dayFourTemp').html(weather.data[3].low_temp.toString() + "℉ / " + weather.data[3].high_temp.toString() + "℉")
             $('#dayFourDesc').html("Description : " + weather.data[3].weather.description.toString())
-            $('#dayFourPrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[3].precip.toString())*100) + "%")
+            $('#dayFourPrecip').html("Chance of Precipitation: " + Math.round(parseFloat(weather.data[3].precip.toString())*10) + "%")
 
             $('#dayFiveDate').html(weather.data[4].valid_date.toString())
             $('#dayFiveIcon').attr("src", ("img/weatherbit-icons/" + weather.data[4].weather.icon.toString() + ".png"))
             $('#dayFiveCurrentTemp').html(weather.data[4].temp + "℉ ")
             $('#dayFiveTemp').html(weather.data[4].low_temp.toString() + "℉ / " + weather.data[4].high_temp.toString() + "℉")
             $('#dayFiveDesc').html("Description : " + weather.data[4].weather.description.toString())
-            $('#dayFivePrecip').html("Chance of Precipitation: " + (parseFloat(weather.data[4].precip.toString())*100) + "%")
+            $('#dayFivePrecip').html("Chance of Precipitation: " + Math.round(parseFloat(weather.data[4].precip.toString())*10) + "%")
         })
     }
     getWeather(coords);
@@ -196,10 +216,6 @@
     marker.on('dragend', function(){
         var coords = marker.getLngLat().toArray()
         getWeather(coords);
-        reverseGeocode({lat: coords[0], lng: coords[1]}, "pk.eyJ1IjoidHltZWkiLCJhIjoiY2tvZWdlNGp0MGE2azJ2b2M4MDk1bG93MSJ9.bZAESmR55PH-pCyme1t00Q").then(function(results) {
-            console.log(results)
-            // $("#currentCity").html(results.features[0].center)
-           })
     })
 
 
@@ -213,7 +229,7 @@
         $("#currentLocation").html("Current City: " + barResults.toString());
 
         // geocodes input location
-        geocode(barResults, "pk.eyJ1IjoidHltZWkiLCJhIjoiY2tvZWdlNGp0MGE2azJ2b2M4MDk1bG93MSJ9.bZAESmR55PH-pCyme1t00Q").then(function(results) {
+        geocode(barResults, MAPBOX_ACCESS_TOKEN).then(function(results) {
             console.log(results.features[0].center)
 
             // holds coordinates of input location in an array
@@ -226,7 +242,7 @@
 
             //sets marker at new location
             marker.setLngLat([coords[0],coords[1]]);
-            $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" +coords[0] + "&lat=" +coords[1] + "&key=46c03057a2e24304bf6ee0e0ff1fee55").done(function (weather){
+            $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" +coords[0] + "&lat=" +coords[1] + "&key=" + WEATHER_BIT_ACCESS_TOKEN).done(function (weather){
                 console.log(weather)
                 getWeather(coords);
             });
