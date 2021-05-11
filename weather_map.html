@@ -165,8 +165,6 @@
 
         $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" + coords[0] + "&lat=" + coords[1] + "&key=" + WEATHER_BIT_ACCESS_TOKEN).done(function (weather) {
 
-
-
             $('#currentLocation').html("Current Location: " +  weather.city_name.toString())
 
             $('#dayOneDate').html(weather.data[0].valid_date.toString())
