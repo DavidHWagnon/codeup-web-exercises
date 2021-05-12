@@ -12,10 +12,10 @@
 
     <style>
         body{
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg,dodgerblue, mediumspringgreen, deepskyblue, lightseagreen);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
-            font-family: 'Montserrat', sans-serif;
+            font-family: Sathu, sans-serif;
         }
         @keyframes gradient {
             0% {
@@ -27,6 +27,52 @@
             100% {
                 background-position: 0% 50%;
             }
+        }
+        @keyframes cardSlide {
+            0% {
+                bottom: 500px;
+                opacity: 0;
+            }
+            80%{
+                opacity: 0;
+            }
+            100% {
+                bottom: 0;
+                opacity: 1;
+            }
+        }
+        @keyframes searchExpand {
+            0%{
+                width: 0;
+            }
+            50%{
+                width: 0;
+            }
+            100%{
+                width: 100%;
+            }
+        }
+        @keyframes inlineOpacity {
+            0%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+
+        }
+        #searchForm{
+            background-color: rgba(255,255,255,0.4);
+            height: 85px;
+            animation-name: searchExpand;
+            animation-duration: 4s;
+        }
+        .form-inline{
+            animation-name: inlineOpacity;
+            animation-duration: 8s;
         }
         img{
             height: 75px;
@@ -46,13 +92,46 @@
         }
         #places{
             font-size: x-large;
+            text-outline: 1px black;
         }
-        #searchForm{
-            background-color: rgba(255,255,255,0.4);
+        .flip-card {
+            animation-name: cardSlide;
+            animation-duration: 5s;
+            background-color: transparent;
+            width: 400px;
+            height: 250px;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px; /* Remove this if you don't want the 3D effect */
         }
-        .card{
-            background-color: rgba(52,51,50,0.6);
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+        }
+        .flip-card-front {
+            background-color: rgba(52,51,50);
+            color: black;
+        }
+        .flip-card-back {
+            background-color: rgba(52,51,50);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+
 
 
     </style>
@@ -60,12 +139,12 @@
 </head>
 <body>
 
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between ">
-  <a class="navbar-brand" href="#">Weather Map : by David Wagnon</a>
-    <p id="currentLocation" class="m-0 d-flex justify-self-center">Current City: San Antonio</p>
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between">
+  <a class="navbar-brand" style="color: black;" href="#">Weather Map : by David Wagnon</a>
+    <p id="currentLocation" class="m-0 d-flex justify-self-center" style="color: black;">Current Location: San Antonio</p>
 </nav>
-<div id="searchForm" class=" row p-4 d-flex jumbotron jumbotron-fluid">
-        <form class="form-inline ml-5">
+<div id="searchForm" class=" row p-4 jumbotron">
+        <form class="form-inline ml-5 py-auto">
             <p id="places" class="d-flex align-self-center pr-3 m-0 ">Places</p>
             <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button id="searchButton" class="btn bg-light my-2 my-sm-0" type="submit">Find</button>
@@ -75,75 +154,95 @@
     <div id='map' style='width: 95%; height: 650px; position: center'></div>
 </div>
 
-<div class="row d-flex justify-content-around m-3 ">
+<div class="row d-flex justify-content-around m-3" style="z-index: 7">
 
 <!--    Day One Card-->
-    <div class="card col-2 p-0 text-white">
-        <div id="dayOneDate" class="card-header">
-            Date
-        </div>
-        <div class="card-body">
-            <img id="dayOneIcon" class="" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayOneCurrentTemp" class="card-text">Current Temp</h3>
-            <h5 id="dayOneTemp" class="card-text">Temperature</h5>
-            <p id="dayOneDesc" class="card-text">Weather Description</p>
-            <p id="dayOnePrecip" class="card-text">Change of Precipitation</p>
+    <div class="col-2 p-0 text-white flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front text-white">
+                <div id="dayOneDate" class="card-header">
+                    Date
+                </div>
+                <img id="dayOneIcon" class="" src="img/weatherbit-icons/a01d.png">
+                <h3 id="dayOneCurrentTemp" class="card-text">Current Temp</h3>
+                <h5 id="dayOneTemp" class="card-text">Temperature</h5>
+            </div>
+            <div class="flip-card-back">
+                <p id="dayOneDesc" class="card-text">Weather Description</p>
+                <p id="dayOnePrecip" class="card-text">Change of Precipitation</p>
+            </div>
         </div>
     </div>
 
 <!--    Day Two Card-->
-    <div class="card col-2 p-0 m-0 text-white">
-        <div id="dayTwoDate" class="card-header">
-            Date
-        </div>
-        <div class="card-body text-white">
-            <img id="dayTwoIcon" class="" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayTwoCurrentTemp" class="card-text">Current Temp</h3>
-            <h5 id="dayTwoTemp" class="card-text">Temperature</h5>
-            <p id="dayTwoDesc" class="card-text">Weather Description</p>
-            <p id="dayTwoPrecip" class="card-text">Change of Precipitation</p>
+    <div class="col-2 p-0 text-white flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front text-white">
+                <div id="dayTwoDate" class="card-header">
+                    Date
+                </div>
+                <img id="dayTwoIcon" class="" src="img/weatherbit-icons/a01d.png">
+                <h3 id="dayTwoCurrentTemp" class="card-text">Current Temp</h3>
+                <h5 id="dayTwoTemp" class="card-text">Temperature</h5>
+            </div>
+            <div class="flip-card-back">
+                <p id="dayTwoDesc" class="card-text">Weather Description</p>
+                <p id="dayTwoPrecip" class="card-text">Change of Precipitation</p>
+            </div>
         </div>
     </div>
 
 <!--    Day Three Card-->
-    <div class="card col-2 p-0 m-0 text-white">
-        <div id="dayThreeDate" class="card-header">
-            Date
-        </div>
-        <div class="card-body">
-            <img id="dayThreeIcon" class="" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayThreeCurrentTemp" class="card-text">Current Temp</h3>
-            <h5 id="dayThreeTemp" class="card-text">Temperature</h5>
-            <p id="dayThreeDesc" class="card-text">Weather Description</p>
-            <p id="dayThreePrecip" class="card-text">Change of Precipitation</p>
+    <div class="col-2 p-0 text-white flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front text-white">
+                <div id="dayThreeDate" class="card-header">
+                    Date
+                </div>
+                <img id="dayThreeIcon" class="" src="img/weatherbit-icons/a01d.png">
+                <h3 id="dayThreeCurrentTemp" class="card-text">Current Temp</h3>
+                <h5 id="dayThreeTemp" class="card-text">Temperature</h5>
+            </div>
+            <div class="flip-card-back">
+                <p id="dayThreeDesc" class="card-text">Weather Description</p>
+                <p id="dayThreePrecip" class="card-text">Change of Precipitation</p>
+            </div>
         </div>
     </div>
 
 <!--    Day Four Card-->
-    <div class="card col-2 p-0 m-0 text-white">
-        <div id="dayFourDate" class="card-header">
-            Date
-        </div>
-        <div class="card-body">
-            <img id="dayFourIcon" class="" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayFourCurrentTemp" class="card-text">Current Temp</h3>
-            <h5 id="dayFourTemp" class="card-text">Temperature</h5>
-            <p id="dayFourDesc" class="card-text">Weather Description</p>
-            <p id="dayFourPrecip" class="card-text">Change of Precipitation</p>
+    <div class="col-2 p-0 text-white flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front text-white">
+                <div id="dayFourDate" class="card-header">
+                    Date
+                </div>
+                <img id="dayFourIcon" class="" src="img/weatherbit-icons/a01d.png">
+                <h3 id="dayFourCurrentTemp" class="card-text">Current Temp</h3>
+                <h5 id="dayFourTemp" class="card-text">Temperature</h5>
+            </div>
+            <div class="flip-card-back">
+                <p id="dayFourDesc" class="card-text">Weather Description</p>
+                <p id="dayFourPrecip" class="card-text">Change of Precipitation</p>
+            </div>
         </div>
     </div>
 
 <!--    //Day Five Card-->
-    <div class="card col-2 p-0 m-0 text-white">
-        <div id="dayFiveDate" class="card-header">
-            Date
-        </div>
-        <div class="card-body">
-            <img id="dayFiveIcon" class="" src="img/weatherbit-icons/a01d.png">
-            <h3 id="dayFiveCurrentTemp" class="card-text">Current Temp</h3>
-            <h5 id="dayFiveTemp" class="card-text">Temperature</h5>
-            <p id="dayFiveDesc" class="card-text">Weather Description</p>
-            <p id="dayFivePrecip" class="card-text">Change of Precipitation</p>
+    <div class="col-2 p-0 text-white flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front text-white">
+                <div id="dayFiveDate" class="card-header">
+                    Date
+                </div>
+                <img id="dayFiveIcon" class="" src="img/weatherbit-icons/a01d.png">
+                <h3 id="dayFiveCurrentTemp" class="card-text">Current Temp</h3>
+                <h5 id="dayFiveTemp" class="card-text">Temperature</h5>
+            </div>
+            <div class="flip-card-back">
+                <p id="dayFiveDesc" class="card-text">Weather Description</p>
+                <p id="dayFivePrecip" class="card-text">Change of Precipitation</p>
+            </div>
         </div>
     </div>
 </div>
