@@ -130,9 +130,6 @@
             transform: rotateY(180deg);
         }
 
-
-
-
     </style>
 
 </head>
@@ -154,7 +151,6 @@
 </div>
 
 <div class="row d-flex justify-content-around m-3" style="z-index: 7">
-
 <!--    Day One Card-->
     <div class="col-2 p-0 text-white flip-card">
         <div class="flip-card-inner">
@@ -172,7 +168,6 @@
             </div>
         </div>
     </div>
-
 <!--    Day Two Card-->
     <div class="col-2 p-0 text-white flip-card">
         <div class="flip-card-inner">
@@ -190,7 +185,6 @@
             </div>
         </div>
     </div>
-
 <!--    Day Three Card-->
     <div class="col-2 p-0 text-white flip-card">
         <div class="flip-card-inner">
@@ -260,7 +254,6 @@
     //Default Weather Settings from San Antonio
     var coords = [-98.4936, 29.4241];
     function getWeather(coords){
-
         $.get("https://api.weatherbit.io/v2.0/forecast/daily?&days=5&units=I&lon=" + coords[0] + "&lat=" + coords[1] + "&key=" + WEATHER_BIT_ACCESS_TOKEN).done(function (weather) {
 
             $('#currentLocation').html("Current Location: " +  weather.city_name.toString())
