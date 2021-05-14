@@ -33,7 +33,7 @@ const users = [
 // to the languages array
 // TODO: replace the `var` keyword with `const`, then try to reassign a variable
 // declared as `const`
-const name = 'David Wagnon';
+const name = 'David';
 const email = 'david.wagnon02@gmail.com';
 const languages = ["Javasacript", "CSS", "HTML"];
 
@@ -53,14 +53,14 @@ let names = [];
 //   return emails.push(user.email);
 // });
 
-users.forEach = (user) => emails.push(user.email);
+users.forEach(user => emails.push(user.email));
 
 
 // users.forEach(function(user) {
 //   return names.push(user.name);
 // });
 
-users.forEach = (user) => emails.push(user.name);
+users.forEach(user => names.push(user.name));
 
 // TODO: replace `var` with `let` in the following declaration
 let developers = [];
@@ -72,12 +72,11 @@ users.forEach(function(user) {
   // const name = user.name;
   // const email = user.email;
   // const languages = user.languages;
+
   const {name,email,languages} = user;
 
   // TODO: rewrite the assignment below to use template strings
-  // developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
-  developers.push('${name}\'s email is ${email}${name} knows ${languages.join(', ')} ');
-
+  developers.push(`${name}s email is  ${email} ${name} knows ${languages.join(', ')}`);
 });
 
 
@@ -86,7 +85,8 @@ let list = '<ul>';
 
 // TODO: rewrite the following loop to use a for..of loop
 
-for(const element of developers) {
-  list += '<li>${developer} </li>';
+for(let developer of developers) {
+
+  list += `<li>${developer} </li>`;
 }
 list += '</ul>';
