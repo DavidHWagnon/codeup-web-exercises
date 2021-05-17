@@ -48,10 +48,24 @@ console.log(emails);
 const total = users.reduce((total, currentNumber) => {
     return total + currentNumber.yearsOfExperience;
 }, 0);
-console.log(total);
+console.log("The total amount of experience among the users is " + total + "years");
 const average = total / users.length;
-console.log(average);
+console.log("The average amount of experience in years among the users is " + average + " years");
+
+var longest = users.reduce(function (a, b) {
+    return a.email.length > b.email.length ? a : b;
+}).email;
+
+console.log(longest);
 
 
+const userNames = users.reduce((total, person, index, usersArray) => {
+    if(index < usersArray.length-1){
+        return total+ person.name + ", ";
+    }else{
+        return total+ person.name + ". ";
+    }
 
+}, "");
 
+console.log("Your instructors are: "+ userNames);
