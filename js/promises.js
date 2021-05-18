@@ -1,22 +1,37 @@
 
 
 
-fetch('https://api.github.com/users/DavidHWagnon/events')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
 
 
-fetch("https://api.github.com/users/DavidHWagnon/events", {headers: {'Authorization': 'token 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'}})
-    .then(function (data){
-        console.log(fetch(data.url));
+// fetch('https://api.github.com/users/DavidHWagnon/events', {headers: {'Authorization': 'token ' + GITHUB_ACCESS_TOKEN}})
+//     .then(response => console.log(response.json()));
+
+const userLastCommit = username => {
+    return fetch(`https://api.github.com/users/${username}/events`, {headers: {'Authorization': 'token ' + GITHUB_ACCESS_TOKEN}})
+        .then(resp => resp.json())
+        .then(data => {
+            // console.log(data);
+            let lastPush;
+            for(let event of data){
+                if(event.type === "PushEvent"){
+                    last = new Date(event.created_at);
+                    break;
+                }
+            }
+            console.log(last);
+        });
+}
+
+userLastCommit("davidhwagnon");
+
+const wait = ms => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(`You'll see this after ${ms/1000} seconds`);
+        }, ms);
     })
-    .catch(error => console.error(error));
+}
 
-// function getCommitDate(username) {
-//     return fetch('https://api.github.com/users',
-//         .then(response => response.json(username))
-// }
-//
-// getCommitDate("DavidHWagnon").then( users => {
-//     users
-// }).catch(error => console.error(error));'
+wait(1000).then(() => console.log('You\'ll see this after 1 second'));
+wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
+
