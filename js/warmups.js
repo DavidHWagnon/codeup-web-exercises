@@ -12,3 +12,8 @@ for(var i = 1; i <= 30; i++ ){
         console.log(i);
     }
 }
+function seven(){
+    console.log(7)
+    return 7;
+}
+seven();
