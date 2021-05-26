@@ -16,4 +16,7 @@ function seven(){
     console.log(7)
     return 7;
 }
-seven();
+
+function multipyFive (num){
+    return num * 5;
+}
